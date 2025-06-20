@@ -1,0 +1,89 @@
+import { useState, useEffect } from 'react'
+import { Routes, Route } from 'react-router'
+import axios from 'axios'
+
+import Home from './components/Home'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import AllBooks from './components/AllBooks'
+import SingleBook from './components/SingleBook'
+import AddBook from './components/AddBook'
+import Error from './components/Error'
+
+const App = () => {
+    const [book, setBook] = useState([])
+
+    const [ formData, setFormData ] = useState({
+        title: '',
+        author_id: 0,
+        publisher_id: 0,
+        copyright_year: 1600,
+        edition: '',
+        edition_year: 1600,
+        binding: '',
+        language: '',
+        rating: '',
+        num_pages: 0,
+        cover_image: '',
+        qty: 0
+    })
+
+    const [ isPostSuccess, setIsPostSuccess] = useState({
+        isSuccess: false,
+        id: 0
+    })
+
+    const handleSubmit =(e)=> {
+        e.preventDefault()
+        console.log("Submitting:", formData)
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:4000/api/book/post',
+            data: formData
+        }).then(response => {
+            console.log(response)
+            setIsPostSuccess({isSuccess: true, id: response.data.Last_id})
+        })
+    }
+
+    console.log(isPostSuccess)
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    }
+    
+    useEffect(() => {
+        axios.get('http://localhost:4000/api/book')
+            .then(res => {
+                setBook(res.data);
+            })
+            .catch(err => console.error(err))
+    }, [])
+
+    return (
+        <>
+            <Header />
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/book' element={<AllBooks book={book}/>} />
+                <Route path='/book/:id' element={<SingleBook />}/>
+                <Route path='/addBook' element={<AddBook 
+                        handleSubmit={handleSubmit} 
+                        handleChange={handleChange} 
+                        formData={formData}  
+                        isPostSuccess={isPostSuccess}
+                />}/>
+                { isPostSuccess.isSuccess && <Route path={`/book/${isPostSuccess.id}`} element={ <SingleBook />} />}
+                <Route path='*' element={<Error />} />
+            </Routes>
+            <Footer />
+        </>
+    )
+}
+
+export default App
