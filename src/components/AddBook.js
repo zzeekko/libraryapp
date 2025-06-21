@@ -66,7 +66,7 @@ const AddBook =(props)=> {
                     defaultValue={genre.genre_id}
                     value={genre.genre_id}
                     id={genre.genre}
-                    onChange={props.handleChange}
+                    onChange={props.handleGenreChange}
                 />
                 <label className="form-check-label" htmlFor={genre.genre}>
                     {genre.genre}

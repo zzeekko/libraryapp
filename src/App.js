@@ -13,6 +13,7 @@ import Error from './components/Error'
 const App = () => {
     const [book, setBook] = useState([])
 
+    // i realized that genres can be added through handlesubmit so i didnt put them in formdata
     const [formData, setFormData] = useState({ 
             title: '',
             author_id: 0,
@@ -27,7 +28,6 @@ const App = () => {
             num_pages: 0,
             cover_image: '',
             qty: 0,
-            genre: []
         // book: {
         //     title: '',
         //     author_id: 0,
@@ -59,7 +59,7 @@ const App = () => {
         e.preventDefault()
         
         const genres = Object.entries(formGenreData).filter(([id, checked]) => checked).map(([id, checked]) => id);
-        console.log("Submitting:", formData, genres)
+        console.log("Submitting:", {...formData, genres})
         axios({
             method: 'post',
             url: 'http://localhost:4000/api/book/post',
@@ -86,6 +86,7 @@ const App = () => {
             ...prevState,
             [value]: checked
         }));
+        console.log(formGenreData);
     }
     
     useEffect(() => {
