@@ -21,8 +21,7 @@ const App = () => {
             copyright_year: 1600,
             edition: '',
             edition_year: 1600,
-            format_id: 0,
-            format: '',
+            format_id: 1,
             language: '',
             rating: '',
             num_pages: 0,
@@ -93,6 +92,7 @@ const App = () => {
         axios.get('http://localhost:4000/api/book')
             .then(res => {
                 setBook(res.data);
+                console.log('DATA:', res.data)
             })
             .catch(err => console.error(err))
     }, [])

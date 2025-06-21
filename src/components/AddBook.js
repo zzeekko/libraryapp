@@ -75,6 +75,22 @@ const AddBook =(props)=> {
         )
     })
 
+    const formatDivs = format.map(format => {
+        return (
+            <div className="form-check">
+                <input 
+                    className="form-check-input" 
+                    type="radio" 
+                    name="format" 
+                    defaultValue={format.format_id}
+                    id={format.format}
+                    onChange={props.handleChange}
+                />
+                <label className="form-check-label" htmlFor={format.format}>{format.format}</label>
+            </div>
+        )
+    })
+
     return(
         <>
             <main className="main" id="bookFormMain">
@@ -159,41 +175,44 @@ const AddBook =(props)=> {
                                         onChange={props.handleChange}
                                     />
                                 </div> */}
-                                
                                     <div className="format-box">
-                                    <p className="form-text">Format</p>
+                                        <p className="form-text">Format</p>
+                                        { formatDivs }
+                                    </div>
+                                    <div className="format-box">
+                                    <p className="form-text">Binding</p>
                                     <div className="form-check">
                                         <input 
                                             className="form-check-input" 
                                             type="radio" 
-                                            name="format" 
+                                            name="binding" 
                                             defaultValue="paperback" 
-                                            id="format" 
+                                            id="binding" 
                                             onChange={props.handleChange}
-                                        />
-                                        <label className="form-check-label" htmlFor="paperbackFormat">Paperback</label>
+                                            />
+                                        <label className="form-check-label" htmlFor="paperbackBinding">Paperback</label>
                                     </div>
                                     <div className="form-check">
                                         <input 
                                             className="form-check-input" 
                                             type="radio"
                                             defaultValue="hardback" 
-                                            name="format" 
-                                            id="hardbackFormat"
+                                            name="binding" 
+                                            id="hardbackBinding"
                                             onChange={props.handleChange} 
                                         />
-                                        <label className="form-check-label" htmlFor="hardbackFormat">Hardback</label>
+                                        <label className="form-check-label" htmlFor="hardbackBinding">Hardback</label>
                                     </div>
                                     <div className="form-check">
                                         <input 
                                             className="form-check-input" 
                                             type="radio" 
-                                            name="format" 
+                                            name="binding" 
                                             defaultValue="none"
-                                            id="noneFormat" 
+                                            id="noneBinding" 
                                             onChange={props.handleChange}   
                                         />
-                                        <label className="form-check-label" htmlFor="noneFormat">None</label>
+                                        <label className="form-check-label" htmlFor="noneBinding">None</label>
                                     </div>
                                 </div>
                             </div>
