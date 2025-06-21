@@ -64,6 +64,7 @@ const AddBook =(props)=> {
                     type="checkbox"
                     name="genre_id"
                     defaultValue={genre.genre_id}
+                    value={genre.genre_id}
                     id={genre.genre}
                     onChange={props.handleChange}
                 />

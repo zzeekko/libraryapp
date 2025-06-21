@@ -48,6 +48,8 @@ const App = () => {
         // publisher: []
     })
 
+    const [ formGenreData, setFormGenreData ] = useState({})
+
     const [isPostSuccess, setIsPostSuccess] = useState({
         isSuccess: false,
         id: 0
@@ -55,12 +57,13 @@ const App = () => {
 
     const handleSubmit =(e)=> {
         e.preventDefault()
-        console.log("Submitting:", formData)
-
+        
+        const genres = Object.entries(formGenreData).filter(([id, checked]) => checked).map(([id, checked]) => id);
+        console.log("Submitting:", formData, genres)
         axios({
             method: 'post',
             url: 'http://localhost:4000/api/book/post',
-            data: formData
+            data: {...formData, genres}
         }).then(response => {
             console.log(response)
             setIsPostSuccess({isSuccess: true, id: response.data.Last_id})
@@ -74,6 +77,14 @@ const App = () => {
         setFormData(prevState => ({
             ...prevState,
             [name]: value
+        }));
+    }
+
+    const handleGenreChange = (event) => {
+        const { checked, value } = event.target;
+        setFormGenreData(prevState => ({
+            ...prevState,
+            [value]: checked
         }));
     }
     
@@ -94,7 +105,8 @@ const App = () => {
                 <Route path='/book/:id' element={<SingleBook />}/>
                 <Route path='/addBook' element={<AddBook 
                         handleSubmit={handleSubmit} 
-                        handleChange={handleChange} 
+                        handleChange={handleChange}
+                        handleGenreChange={handleGenreChange} 
                         formData={formData}
                         // isPostSuccess={isPostSuccess}
                 />}/>
