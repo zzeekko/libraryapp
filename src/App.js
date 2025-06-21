@@ -58,7 +58,7 @@ const App = () => {
         axios({
             method: 'post',
             url: 'http://localhost:4000/api/book/post',
-            data: formData.book
+            data: formData
         }).then(response => {
             console.log(response)
             setIsPostSuccess({isSuccess: true, id: response.data.Last_id})
