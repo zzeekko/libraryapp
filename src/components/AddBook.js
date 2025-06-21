@@ -5,16 +5,19 @@ const AddBook =(props)=> {
 
     const [ authors, setAuthors ] = useState([])
     const [ publisher, setPublisher ] = useState([])
-    // const [ format, setFormat ] = useState([])
+    const [ format, setFormat ] = useState([])
+    const [ genre, setGenre ] = useState([])
 
     useEffect(()=> {
         const authorUrl = 'http://localhost:4000/api/author'
         const publisherUrl = 'http://localhost:4000/api/publisher'
-        // const formatUrl = 'http://localhost:4000/api/format'
+        const formatUrl = 'http://localhost:4000/api/format'
+        const genreUrl = 'http://localhost:4000/api/genre'
 
         axios.get(authorUrl).then(res => setAuthors(res.data))
         axios.get(publisherUrl).then(res => setPublisher(res.data))
-        // axios.get(formatUrl).then(res => setFormat(res.data))
+        axios.get(formatUrl).then(res => setFormat(res.data))
+        axios.get(genreUrl).then(res => setGenre(res.data))
     }, [])
 
     const authorDivs = authors.map(author => {
@@ -53,23 +56,23 @@ const AddBook =(props)=> {
         )
     })
 
-    // const formatDivs = format.map(format => {
-    //     return (
-    //         <div className="form-check form-check-inline" key={format.format_id}>
-    //             <input
-    //                 className="form-check-input"
-    //                 type="radio"
-    //                 name="format_id"
-    //                 defaultValue={format.format_id}
-    //                 id={format.format}
-    //                 onChange={props.handleChange}
-    //             />
-    //             <label className="form-check-label" htmlFor={format.format}>
-    //                 {format.format}
-    //             </label>
-    //         </div>
-    //     )
-    // })
+    const genreDivs = genre.map(genre => {
+        return (
+            <div className="form-check form-check-inline" key={genre.genre_id}>
+                <input
+                    className="form-check-input"
+                    type="checkbox"
+                    name="genre_id"
+                    defaultValue={genre.genre_id}
+                    id={genre.genre}
+                    onChange={props.handleChange}
+                />
+                <label className="form-check-label" htmlFor={genre.genre}>
+                    {genre.genre}
+                </label>
+            </div>
+        )
+    })
 
     return(
         <>
@@ -144,54 +147,54 @@ const AddBook =(props)=> {
                                 />
                             </div>
                             <div className="col">
-                                <div className="col">
-                                    <label htmlFor="edition" className="form-label">Binding</label>
+                                {/* <div className="col">
+                                    <label htmlFor="edition" className="form-label">format</label>
                                     <input 
-                                        id="binding" 
+                                        id="format" 
                                         type="text"
                                         className="form-control" 
-                                        name="binding"
-                                        value={props.formData.binding}
+                                        name="format"
+                                        value={props.formData.format}
                                         onChange={props.handleChange}
                                     />
-                                </div>
-                                {/* 
-                                    <div className="binding-box">
-                                    <p className="form-text">Binding</p>
+                                </div> */}
+                                
+                                    <div className="format-box">
+                                    <p className="form-text">Format</p>
                                     <div className="form-check">
                                         <input 
                                             className="form-check-input" 
                                             type="radio" 
-                                            name="binding" 
+                                            name="format" 
                                             defaultValue="paperback" 
-                                            id="binding" 
+                                            id="format" 
                                             onChange={props.handleChange}
                                         />
-                                        <label className="form-check-label" htmlFor="bookAlignment">Paperback</label>
+                                        <label className="form-check-label" htmlFor="paperbackFormat">Paperback</label>
                                     </div>
                                     <div className="form-check">
                                         <input 
                                             className="form-check-input" 
                                             type="radio"
                                             defaultValue="hardback" 
-                                            name="binding" 
-                                            id="hardbackBinding"
+                                            name="format" 
+                                            id="hardbackFormat"
                                             onChange={props.handleChange} 
                                         />
-                                        <label className="form-check-label" htmlFor="villainAlignment">Hardback</label>
+                                        <label className="form-check-label" htmlFor="hardbackFormat">Hardback</label>
                                     </div>
                                     <div className="form-check">
                                         <input 
                                             className="form-check-input" 
                                             type="radio" 
-                                            name="binding" 
+                                            name="format" 
                                             defaultValue="none"
-                                            id="noneBinding" 
+                                            id="noneFormat" 
                                             onChange={props.handleChange}   
                                         />
-                                        <label className="form-check-label" htmlFor="noneBinding">None</label>
+                                        <label className="form-check-label" htmlFor="noneFormat">None</label>
                                     </div>
-                                </div> */}
+                                </div>
                             </div>
                         </div>
                         <div className="row mb-3">
@@ -248,14 +251,14 @@ const AddBook =(props)=> {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="row mb-3">
+                        <div className="row mb-3">
                             <div className="col">
-                                <div className="format-box">
-                                    <p className="form-text">Format</p>
-                                    { formatDivs }
+                                <div className="genre-box">
+                                    <p className="form-text">Genre</p>
+                                    { genreDivs }
                                 </div>
                             </div>
-                        </div> */}
+                        </div>
                         <div className="row mb-3">
                             {/* <div className="col">
                                 <div className="input-group mb-3">

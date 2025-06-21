@@ -13,19 +13,21 @@ import Error from './components/Error'
 const App = () => {
     const [book, setBook] = useState([])
 
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState({ 
             title: '',
             author_id: 0,
             publisher_id: 0,
             copyright_year: 1600,
             edition: '',
             edition_year: 1600,
-            binding: '',
+            format_id: 0,
+            format: '',
             language: '',
             rating: '',
             num_pages: 0,
             cover_image: '',
-            qty: 0
+            qty: 0,
+            genre: []
         // book: {
         //     title: '',
         //     author_id: 0,
