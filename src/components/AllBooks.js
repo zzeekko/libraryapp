@@ -35,11 +35,11 @@ const AllBooks = (props) => {
     return (
         <main className="main" id="allBooksMain">
             <div className="container">
-                <h2 className="text-capitalize heading">All Books</h2>
-                <p className="text-end">
-                    <Link to="/addBook">Add Book</Link>
-                </p>
-                <section className="row row-cols-1 row-cols-md-4 row-cols-lg-5 g-4">
+                <h2 className="heading">All Books</h2>
+                <button type="button" class="btn btn-outline-info mb-2">
+                    <Link to={`/addBook`} style={{ textDecoration: "none", color: "blue"}}>Add Book</Link>
+                </button>
+                <section className="row row-cols-1 row-cols-md-4 row-cols-lg-5 g-2 g-md-3 g-lg-5">
                     {cardComponents}
                 </section>
             </div>

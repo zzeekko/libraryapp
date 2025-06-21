@@ -73,7 +73,6 @@ const AddBook =(props)=> {
 
     return(
         <>
-            {props.isPostSuccess.isSuccess ? <Success /> :
             <main className="main" id="bookFormMain">
                 <div className="container">
                     <form className="book-form form" onSubmit={props.handleSubmit}>
@@ -290,19 +289,18 @@ const AddBook =(props)=> {
                     </form>
                 </div>
             </main> 
-            }
         </>
     )
 
 }
 
 
-const Success =()=> {
-    return (
-        <div className="container">
-            <h2>Book Added!</h2> 
-        </div>
-    )
-}
+// const Success =()=> {
+//     return (
+//         <div className="container">
+//             <h2>Book Added!</h2> 
+//         </div>
+//     )
+// }
 
 export default AddBook

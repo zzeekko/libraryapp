@@ -33,7 +33,7 @@ const bookSingle =()=> {
                         <img src={book.cover_image} alt={`${book.title} cover`} className="img-fluid image book-single-img" />
                     </div>
                     <div className="col">
-                        <ul className="book-info-list list-group list-group-flush">
+                        <ul className="book-info-list list-group">
                             <li className="list-group-item">Publisher: {book.publisher}</li>
                             <li className="list-group-item">Language: {book.language}</li>
                             <li className="list-group-item">Copyright Year: {book.copyright_year}</li>

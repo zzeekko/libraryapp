@@ -10,7 +10,7 @@ const BookCard = (props) => {
                     { props.author && <p className="card-text">{props.author}</p>}
                 </section>
                 <footer className="card-footer">
-                    <Link to={`/book/${props.id}`}>More Info</Link>
+                    <Link to={`/book/${props.id}`} style={{ textDecoration: "none", color: "blue"}}>More Info</Link>
                 </footer>
             </div>
         </div>

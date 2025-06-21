@@ -13,22 +13,40 @@ import Error from './components/Error'
 const App = () => {
     const [book, setBook] = useState([])
 
-    const [ formData, setFormData ] = useState({
-        title: '',
-        author_id: 0,
-        publisher_id: 0,
-        copyright_year: 1600,
-        edition: '',
-        edition_year: 1600,
-        binding: '',
-        language: '',
-        rating: '',
-        num_pages: 0,
-        cover_image: '',
-        qty: 0
+    const [formData, setFormData] = useState({
+            title: '',
+            author_id: 0,
+            publisher_id: 0,
+            copyright_year: 1600,
+            edition: '',
+            edition_year: 1600,
+            binding: '',
+            language: '',
+            rating: '',
+            num_pages: 0,
+            cover_image: '',
+            qty: 0
+        // book: {
+        //     title: '',
+        //     author_id: 0,
+        //     publisher_id: 0,
+        //     copyright_year: 1600,
+        //     edition: '',
+        //     edition_year: 1600,
+        //     binding: '',
+        //     language: '',
+        //     rating: '',
+        //     num_pages: 0,
+        //     cover_image: '',
+        //     qty: 0
+        // },
+
+        // author: [],
+
+        // publisher: []
     })
 
-    const [ isPostSuccess, setIsPostSuccess] = useState({
+    const [isPostSuccess, setIsPostSuccess] = useState({
         isSuccess: false,
         id: 0
     })
@@ -40,7 +58,7 @@ const App = () => {
         axios({
             method: 'post',
             url: 'http://localhost:4000/api/book/post',
-            data: formData
+            data: formData.book
         }).then(response => {
             console.log(response)
             setIsPostSuccess({isSuccess: true, id: response.data.Last_id})
@@ -75,10 +93,10 @@ const App = () => {
                 <Route path='/addBook' element={<AddBook 
                         handleSubmit={handleSubmit} 
                         handleChange={handleChange} 
-                        formData={formData}  
-                        isPostSuccess={isPostSuccess}
+                        formData={formData}
+                        // isPostSuccess={isPostSuccess}
                 />}/>
-                { isPostSuccess.isSuccess && <Route path={`/book/${isPostSuccess.id}`} element={ <SingleBook />} />}
+                {/* { isPostSuccess.isSuccess && <Route path={`/book/${isPostSuccess.id}`} element={ <SingleBook />} />} */}
                 <Route path='*' element={<Error />} />
             </Routes>
             <Footer />
