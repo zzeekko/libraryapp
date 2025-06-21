@@ -10,6 +10,6 @@ FIND OUT WHY NEW BOOKS SKIP ID 15 WHEN POSTED
 
 MAKE IT SO THAT SUBMITTED BOOKS CAN ACCEPT NULL AS A VALUE IN SOME OF THEM LIKE AUDIOBOOKS NOT HAVING PAGES
 
-the genre part was done with immense help from my friend max
+the genre part was done with immense help from my friend max (https://github.com/conspicuousClockwork)
 
 i manhandled the hell out of my database so when i get to class to present make sure i remember to add the format_id to the book table
